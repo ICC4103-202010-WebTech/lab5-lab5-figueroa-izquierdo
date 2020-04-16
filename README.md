@@ -1,3 +1,13 @@
+Names: Santiago Figueroa
+		Alejandra IZquierdo
+
+Users: SantiagoFigueroaMc
+		alejandraIzquierdo
+
+Laboratory 5
+
+
+
 # Base Code for Lab Assignment 5
 
 In this lab assignment you will write Active Record queries on the model layer 
