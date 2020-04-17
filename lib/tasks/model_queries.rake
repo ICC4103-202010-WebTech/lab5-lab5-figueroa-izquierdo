@@ -10,7 +10,7 @@ namespace :db do
     # 50 customers with orders should be alright
     create_list(:customer_with_orders, 50)
     # You may try increasing the number of events:
-    create_list(:event_with_ticket_types_and_tickets, 3)
+    create_list(:event_with_ticket_types_and_tickets, 10)
   end
   task :model_queries => :environment do
     # Sample query: Get the names of the events available and print them out.
@@ -19,5 +19,11 @@ namespace :db do
     result = Event.select(:name).distinct.map { |x| x.name }
     puts(result)
     puts("EOQ") # End Of Query -- always add this line after a query.
+  end
+  task :task_2 => :environment do
+    puts "Total number of different events a customer has attended"
+    result = Customer.select(:name).group(:orders).count
+    puts(result)
+    puts("EOQ")
   end
 end
