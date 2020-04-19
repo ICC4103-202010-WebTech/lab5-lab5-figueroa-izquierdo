@@ -36,7 +36,7 @@ namespace :db do
 
   task :task3 => :environment do
     puts(" name of hte event assisted by a given customer")
-    result = Event.includes({tickets :ticket_types :events}).select(:event.name)
+    result = Event.select(:name).group(:name).where(customer.id = 001)
     puts(result)
     puts("EOQ")
   end
@@ -50,7 +50,7 @@ namespace :db do
 
   task :task7 => :environment do
     puts(" event most attended by men of 18 to 30")
-    result = event.select(:name).where(" age <= 18 AND age <= 30", {Customer.age: params[:customer.age]})
+    result = event.select(:name).where("customer.age >= 18 AND customer.age <= 30", {Customer.age, params[:customer.age]}).group(:event.name)
     puts(result)
     puts("EOQ")
   end
