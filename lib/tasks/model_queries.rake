@@ -26,4 +26,34 @@ namespace :db do
     puts(result)
     puts("EOQ")
   end
+
+  task :task_1 => :environment do
+    puts(" total number bought by given customer")
+    result = Customer.include(:tickets).count(:tickets)
+    puts(result)
+    puts("EOQ")
+  end
+
+  task :task3 => :environment do
+    puts(" name of hte event assisted by a given customer")
+    result = Event.includes({tickets :ticket_types :events}).select(:event.name)
+    puts(result)
+    puts("EOQ")
+  end
+
+  task :task5 => :environment do
+    puts(" total sold by an event")
+    result = Ticket.group.includes(:event.name).sum(ticket_price)
+    puts(result)
+    puts("EOQ")
+  end
+
+  task :task7 => :environment do
+    puts(" event most attended by men of 18 to 30")
+    result = event.select(:name).where(" age <= 18 AND age <= 30", {Customer.age: params[:customer.age]})
+    puts(result)
+    puts("EOQ")
+  end
+
+
 end
